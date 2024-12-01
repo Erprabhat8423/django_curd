@@ -1,9 +1,11 @@
+version: '3.9'
+
 services:
   web:
-     build:
+    build:
       context: .
       args:
-       - DEBUG=False
+        DEBUG: False
     command: >
       sh -c "python manage.py collectstatic --noinput &&
              gunicorn -c gunicorn_config.py"
@@ -25,4 +27,3 @@ services:
       - "443:443"
     depends_on:
       - web
-
