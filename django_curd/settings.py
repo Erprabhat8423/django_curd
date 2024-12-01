@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Other middleware classes...
-    'curd.middleware.URLFilterMiddleware',
+    # 'curd.middleware.URLFilterMiddleware',
 ]
 
 ROOT_URLCONF = 'django_curd.urls'
@@ -86,15 +86,15 @@ WSGI_APPLICATION = 'django_curd.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MYSQL_DATABASE', 'curd_app'),
-        'USER': os.getenv('MYSQL_USER', 'root'),
-        'PASSWORD': os.getenv('MYSQL_PASSWORD', 'root'),
-        'HOST': os.getenv('MYSQL_HOST', 'db'),  # Match the service name in docker-compose.yml
-        'PORT': os.getenv('MYSQL_PORT', '3306'),
+        'NAME': 'crud_database',
+        'USER': 'admin',
+        'PASSWORD': 'admin123',
+        'HOST': 'django-crud.chi288cs00ca.us-east-1.rds.amazonaws.com',  # Match the service name in docker-compose.yml
+        'PORT': '3306',
     }
 }
 
-# Password validation
+# Password 
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
