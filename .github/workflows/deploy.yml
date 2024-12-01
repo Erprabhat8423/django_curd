@@ -20,7 +20,7 @@ jobs:
 
     - name: Run commands on EC2
       run: |
-        ssh -o StrictHostKeyChecking=no  ubuntu@ec2-54-175-193-166.compute-1.amazonaws.com << 'EOF'
+        ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-175-193-166.compute-1.amazonaws.com << 'EOF'
           cd django_curd
           git pull origin master
           docker compose -f prod.yml restart web
