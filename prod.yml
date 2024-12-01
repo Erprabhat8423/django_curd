@@ -5,27 +5,13 @@ services:
       args:
        - DEBUG=False
     command: >
-      sh -c "python manage.py wait_for_db &&
-             python manage.py collectstatic --noinput &&
+      sh -c "python manage.py collectstatic --noinput &&
              gunicorn -c gunicorn_config.py"
     volumes:
       - ./django:/django
       - ./media:/django/media
     env_file:
       - .env
-
-  # db:
-  #   image: mysql:8.0
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_DATABASE: curd_app
-  #     MYSQL_USER: root
-  #     MYSQL_PASSWORD: root
-  #   volumes:
-  #     - mysql_data:/var/lib/mysql
-  #   ports:
-  #     - "3306:3306"
-  #   restart: always
 
   nginx:
     image: nginx:latest
@@ -40,5 +26,3 @@ services:
     depends_on:
       - web
 
-# volumes:
-#   mysql_data:
