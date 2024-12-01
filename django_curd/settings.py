@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Other middleware classes...
-    # 'curd.middleware.URLFilterMiddleware',
+    'curd.middleware.URLFilterMiddleware',
 ]
 
 ROOT_URLCONF = 'django_curd.urls'
