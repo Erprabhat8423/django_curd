@@ -5,25 +5,31 @@ services:
     build: .
     volumes:
       - .:/django
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
+      - ./media:/django/media
     ports:
       - "8000:8000"
+    # env_file:
+    #   - .env
     environment:
-      - DEBUG=True
-    
+      DEBUG: "True"  # Use string values for boolean environment variables
     image: application:django
     container_name: django_app
     command: gunicorn django_curd.wsgi:application --bind 0.0.0.0:8000
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
 
-  # db:
-  #   image: postgres:14
-  #   environment:
-  #     POSTGRES_USER: django
-  #     POSTGRES_PASSWORD: django
-  #     POSTGRES_DB: mydatabase
-  #   ports:
-  #     - "5432:5432"
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: curd_app
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3307:3306"  # Expose MySQL port for local connections
+    restart: always  # Ensure the DB container restarts automatically if it fails
+
+volumes:
+  mysql_data:  # Volume definition for persistent MySQL storage
